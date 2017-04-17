@@ -1,0 +1,21 @@
+{
+  "name": "stryve-server",
+  "version": "0.0.1",
+  "description": "The API and WebSocket server for Stryve",
+  "main": "index.js",
+  "repository": "git@github.com:nicklaw5/stryve-server.git",
+  "license": "MIT",
+  "scripts": {
+    "lint": "node_modules/.bin/eslint src/stryve src/**/*.js"
+  },
+  "dependencies": {
+    "hapi": "^16.1.1",
+    "hapi-auth-jwt2": "^7.2.4",
+    "yargs": "^7.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0"
+  }
+}

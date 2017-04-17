@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+function unknownCommand(command) {
+  console.log(`'${command}' is not a known command.`)
+}
+
+const yargs = require('yargs')
+    .usage('Usage: node stryve <command> <subcommand> [--port=3001] [--env=dev]')
+    .command('api', 'Start the API server')
+    .command('wss', 'Start the WSS server')
+    .option('port', { describe: 'The port to serve on.', type: 'number' })
+    .option('env', { describe: 'The environment to run on.', type: 'string' })
+    .help('h')
+    .alias('h', 'help')
+    .argv
+
+const options = {
+  env: yargs.env,
+  port: yargs.port,
+}
+
+// COMMANDS
+if (yargs._[0] === 'api') {
+  switch (yargs._[1]) {
+    case 'start':
+      require('./api/server').newApiServer(options)
+      break
+    default:
+      unknownCommand(yargs._[1])
+  }
+} else if (yargs._[0] === 'wss') {
+  switch (yargs._[1]) {
+    case 'start':
+      console.log('starting wss server...')
+      break
+    default:
+      unknownCommand(yargs._[1])
+  }
+}
